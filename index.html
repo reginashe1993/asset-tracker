@@ -194,7 +194,7 @@ body{color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',san
     </div>
     <div class="fl r2">
       <div>
-        <label>购入价格 (¥)</label>
+        <label>购入价格 ($)</label>
         <input id="fp2" type="number" inputmode="decimal" placeholder="9999" oninput="upHint()"/>
       </div>
       <div>
@@ -300,8 +300,12 @@ function todayStr() {
   return new Date().toISOString().slice(0, 10);
 }
 
-function fmtY(v) {
-  return '¥' + Math.round(v).toLocaleString('zh-CN');
+function fmtC(v) {
+  return '$' + Math.round(v).toLocaleString('en-CA');
+}
+function fmtCd(v) {
+  // For daily costs with 2 decimal places + commas
+  return '$' + Number(v).toLocaleString('en-CA', {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 
 // ── Persistence ────────────────────────────────────────────────────────────
@@ -335,7 +339,9 @@ function load() {
     {id:5, name:'Chanel 腕表',      price:45150,  purchaseDate:'2023-01-22', cat:'fashion', sub:'lwatch',    icon:'⌚', status:'active'},
     {id:6, name:'富士 X100iv',      price:13520,  purchaseDate:'2025-05-19', cat:'elec',    sub:'camera',    icon:'📷', status:'active'},
     {id:7, name:'Macbook Air',      price:7800,   purchaseDate:'2024-06-02', cat:'elec',    sub:'laptop',    icon:'💻', status:'active'},
-    {id:8, name:'iPhone 12 mini',   price:6360,   purchaseDate:'2021-03-23', cat:'elec',    sub:'phone',     icon:'📱', status:'active'},
+    {id:8, name:'iPhone 12 mini',   price:6360,    purchaseDate:'2021-03-23', cat:'elec',    sub:'phone',     icon:'📱', status:'active'},
+    {id:9, name:'Grace',            price:9800000, purchaseDate:'2024-06-20', cat:'home',    sub:'furniture', icon:'🪴', status:'active'},
+    {id:10,name:'Chanel all',       price:100000,  purchaseDate:'2023-10-03', cat:'fashion', sub:'lbag',      icon:'👜', status:'active'},
   ];
   nid = 200;
 }
@@ -376,10 +382,10 @@ function render() {
   const totalCurr = items.reduce((s, i) => s + calcCurrentValue(i), 0);
   const active    = items.filter(i => i.status === 'active');
 
-  document.getElementById('kv1').textContent     = fmtY(totalCurr);
-  document.getElementById('kv1-orig').textContent = '原价 ' + fmtY(totalOrig);
+  document.getElementById('kv1').textContent     = fmtC(totalCurr);
+  document.getElementById('kv1-orig').textContent = '原价 ' + fmtC(totalOrig);
   document.getElementById('kv2').textContent =
-    '¥' + active.reduce((s, i) => s + (i.price / Math.max(calcDays(i), 1)), 0).toFixed(2);
+    fmtCd(active.reduce((s, i) => s + (i.price / Math.max(calcDays(i), 1)), 0));
   document.getElementById('sprow').innerHTML =
     `<div class="sp"><div class="dot" style="background:#16a34a"></div>服役中 ${items.filter(i=>i.status==='active').length}</div>
      <div class="sp"><div class="dot" style="background:#d97706"></div>已退役 ${items.filter(i=>i.status==='retired').length}</div>
@@ -406,8 +412,8 @@ function render() {
       <span class="ci">${item.icon}</span>
       <div class="cn">${item.name}</div>
       <div class="cm">${dateLabel}　${days}天</div>
-      <div class="cv">${fmtY(curVal)}</div>
-      <div class="cv-orig">原价 ${fmtY(item.price)} · 日均 ¥${daily.toFixed(2)}</div>
+      <div class="cv">${fmtC(curVal)}</div>
+      <div class="cv-orig">原价 ${fmtC(item.price)} · 日均 ${fmtCd(daily)}</div>
       <div class="pb"><div class="pf" style="width:${pct}%;background:${color}"><div class="pk" style="background:${color}"></div></div></div>
       <div class="pl ${done?'done':''}">${done ? '✓ 已归零' : '还剩 ' + rem + ' 天'}</div>
     </div>`;
@@ -500,7 +506,7 @@ function upHint() {
       const pct    = Math.min(Math.round(days / p.d * 100), 100);
       const rem    = Math.max(0, p.d - days);
       const curVal = Math.round(price * (rem / p.d));
-      body += `<br>已使用 ${days} 天 · 当前估值：¥${curVal.toLocaleString()} · 已消耗 ${pct}%`;
+      body += `<br>已使用 ${days} 天 · 当前估值：${fmtC(curVal)} · 已消耗 ${pct}%`;
     }
   }
   h.style.display = 'block';

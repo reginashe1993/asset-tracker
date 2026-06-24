@@ -15,8 +15,19 @@
   --amber:#b45309;--amber-bg:#FEF3C7;--amber-tx:#78350f;
   --gray-bg:#F1F0EA;--gray-tx:#555;
 }
-html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#1a1a1a;--s1:#242424;--s2:#2e2e2e;
+    --tx:#f0f0f0;--mu:#aaa;--mu2:#777;
+    --bd:#333;--bd2:#444;
+    --a2:#1e1b4b;--a3:#312e81;
+    --green-bg:#052e16;--green-tx:#86efac;
+    --amber-bg:#431407;--amber-tx:#fcd34d;
+    --gray-bg:#2a2a2a;--gray-tx:#aaa;
+  }
+}
+html,body{height:100%;overflow:hidden;background:var(--bg)}
+body{color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px}
 .sc{display:none;flex-direction:column;height:100dvh;max-width:480px;margin:0 auto}
 .sc.on{display:flex}
 
@@ -29,6 +40,7 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .kpi{background:var(--a2);border-radius:12px;padding:12px 14px;border:1px solid var(--a3)}
 .kpi-v{font-size:20px;font-weight:700;color:var(--a)}
 .kpi-l{font-size:10px;color:#6366f1;margin-top:2px}
+.kpi-sub{font-size:9px;color:#818cf8;margin-top:1px}
 .sp-row{display:flex;gap:14px}
 .sp{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mu)}
 .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
@@ -61,12 +73,12 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .sdot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .ci{font-size:24px;margin-bottom:7px;display:block}
 .cn{font-size:11px;font-weight:600;line-height:1.3;margin-bottom:2px;color:var(--tx)}
-.cm{font-size:10px;color:var(--mu2);margin-bottom:7px}
-.cd{font-size:17px;font-weight:700;margin-bottom:7px;color:var(--tx)}
-.cd span{font-size:10px;color:var(--mu);font-weight:400}
+.cm{font-size:10px;color:var(--mu2);margin-bottom:6px}
+.cv{font-size:16px;font-weight:700;color:var(--tx);margin-bottom:1px}
+.cv-orig{font-size:9px;color:var(--mu2);margin-bottom:5px}
 .pb{height:5px;background:var(--s2);border-radius:3px;margin-bottom:5px;overflow:visible;position:relative}
-.pf{height:100%;border-radius:3px;background:var(--a);position:relative;max-width:100%}
-.pk{position:absolute;right:-4px;top:-3px;width:10px;height:10px;background:var(--a);border-radius:50%;border:2px solid #fff}
+.pf{height:100%;border-radius:3px;position:relative;max-width:100%}
+.pk{position:absolute;right:-4px;top:-3px;width:10px;height:10px;border-radius:50%;border:2px solid var(--s1)}
 .pl{font-size:9px;color:var(--mu2)}
 .pl.done{color:var(--green);font-weight:600}
 .empty{grid-column:1/-1;text-align:center;padding:60px 0;color:var(--mu);font-size:13px;line-height:2.5}
@@ -76,7 +88,7 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .fab{position:fixed;bottom:24px;right:50%;transform:translateX(calc(50% + 224px));width:52px;height:52px;border-radius:50%;background:var(--a);border:none;color:#fff;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:50;box-shadow:0 4px 16px rgba(79,70,229,.35);line-height:1}
 @media(max-width:480px){.fab{right:20px;transform:none}}
 
-/* ADD / DETAIL SCREEN */
+/* ADD / EDIT SCREEN */
 .ahdr{display:flex;align-items:center;gap:8px;padding:16px;flex-shrink:0;border-bottom:1px solid var(--bd);background:var(--s1)}
 .bk{background:none;border:none;color:var(--a);font-size:26px;cursor:pointer;line-height:1;padding:0 8px 0 0;font-weight:500}
 .ahdr h2{font-size:16px;font-weight:700;color:var(--tx);flex:1}
@@ -87,6 +99,7 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .fl label{display:block;font-size:10px;color:var(--mu);margin-bottom:6px;text-transform:uppercase;letter-spacing:.7px;font-weight:600}
 .fl input,.fl select{width:100%;background:var(--s1);border:1px solid var(--bd2);border-radius:10px;padding:11px 13px;color:var(--tx);font-size:14px;outline:none;-webkit-appearance:none;appearance:none}
 .fl input:focus,.fl select:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--a2)}
+.fl input[type="date"]{color-scheme:light dark}
 .fl select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23888' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px}
 .r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cat4{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:5px}
@@ -107,7 +120,6 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 .addbtn{width:100%;background:var(--a);color:#fff;border:none;border-radius:12px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:12px;transition:opacity .12s}
 .addbtn:active{opacity:.85}
 .cancelbtn{width:100%;background:transparent;color:var(--mu);border:none;padding:10px;font-size:13px;cursor:pointer;margin-top:4px}
-.sect-label{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.7px;margin:0 0 10px}
 </style>
 </head>
 <body>
@@ -122,8 +134,15 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
       </div>
     </div>
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-v" id="kv1">¥0</div><div class="kpi-l">总资产价值</div></div>
-      <div class="kpi"><div class="kpi-v" id="kv2">¥0</div><div class="kpi-l">今日均摊成本</div></div>
+      <div class="kpi">
+        <div class="kpi-v" id="kv1">¥0</div>
+        <div class="kpi-l">当前剩余价值</div>
+        <div class="kpi-sub" id="kv1-orig"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-v" id="kv2">¥0</div>
+        <div class="kpi-l">今日均摊成本</div>
+      </div>
     </div>
     <div class="sp-row" id="sprow"></div>
   </div>
@@ -179,8 +198,8 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
         <input id="fp2" type="number" inputmode="decimal" placeholder="9999" oninput="upHint()"/>
       </div>
       <div>
-        <label>已使用天数</label>
-        <input id="fd" type="number" inputmode="numeric" placeholder="0" oninput="upHint()"/>
+        <label>购入日期</label>
+        <input id="fdate" type="date" oninput="upHint()"/>
       </div>
     </div>
     <div class="fl">
@@ -202,262 +221,319 @@ body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSyst
 </div>
 
 <script>
-const CATS=[
-  {k:'elec',label:'电子设备',icon:'📱'},
-  {k:'fashion',label:'服装首饰',icon:'👜'},
-  {k:'car',label:'交通出行',icon:'🚗'},
-  {k:'home',label:'房产居住',icon:'🏠'},
+const CATS = [
+  {k:'elec',   label:'电子设备', icon:'📱'},
+  {k:'fashion', label:'服装首饰', icon:'👜'},
+  {k:'car',    label:'交通出行', icon:'🚗'},
+  {k:'home',   label:'房产居住', icon:'🏠'},
 ];
-const SUBS={
-  elec:[
-    {k:'phone',l:'手机',i:'📱',d:4*365,icons:['📱','📲']},
-    {k:'laptop',l:'笔记本',i:'💻',d:5*365,icons:['💻']},
-    {k:'tablet',l:'平板',i:'📟',d:6*365,icons:['📟','🗒️']},
-    {k:'headphone',l:'耳机',i:'🎧',d:3*365,icons:['🎧','🎵']},
-    {k:'swatch',l:'智能手表',i:'⌚',d:3*365,icons:['⌚']},
-    {k:'camera',l:'相机',i:'📷',d:7*365,icons:['📷','📸']},
-    {k:'console',l:'游戏机',i:'🎮',d:6*365,icons:['🎮','🕹️']},
-    {k:'tv',l:'电视',i:'📺',d:7*365,icons:['📺']},
-    {k:'elec_o',l:'其他',i:'🔌',d:4*365,icons:['🔌','🖨️','🖱️','⌨️']},
+const SUBS = {
+  elec: [
+    {k:'phone',     l:'手机',     i:'📱', d:4*365,  icons:['📱','📲']},
+    {k:'laptop',    l:'笔记本',   i:'💻', d:5*365,  icons:['💻']},
+    {k:'tablet',    l:'平板',     i:'📟', d:6*365,  icons:['📟','🗒️']},
+    {k:'headphone', l:'耳机',     i:'🎧', d:3*365,  icons:['🎧','🎵']},
+    {k:'swatch',    l:'智能手表', i:'⌚', d:3*365,  icons:['⌚']},
+    {k:'camera',    l:'相机',     i:'📷', d:7*365,  icons:['📷','📸']},
+    {k:'console',   l:'游戏机',   i:'🎮', d:6*365,  icons:['🎮','🕹️']},
+    {k:'tv',        l:'电视',     i:'📺', d:7*365,  icons:['📺']},
+    {k:'elec_o',    l:'其他',     i:'🔌', d:4*365,  icons:['🔌','🖨️','🖱️','⌨️']},
   ],
-  fashion:[
-    {k:'tshirt',l:'T恤/上衣',i:'👕',d:3*365,icons:['👕','👚','👗']},
-    {k:'pants',l:'裤子',i:'👖',d:5*365,icons:['👖']},
-    {k:'coat',l:'外套/大衣',i:'🧥',d:8*365,icons:['🧥','🥼']},
-    {k:'shoes',l:'鞋子',i:'👟',d:4*365,icons:['👟','👠','👞','🥾']},
-    {k:'lbag',l:'奢侈品包',i:'👜',d:15*365,icons:['👜','👝','🎒']},
-    {k:'lwatch',l:'名表',i:'⌚',d:20*365,icons:['⌚','🕰️']},
-    {k:'jewel',l:'珠宝首饰',i:'💍',d:10*365,icons:['💍','📿','💎']},
-    {k:'suit',l:'正装/礼服',i:'👔',d:10*365,icons:['👔','🤵','👗']},
-    {k:'fash_o',l:'其他',i:'🧣',d:5*365,icons:['🧣','🧤','🧢','🪡']},
+  fashion: [
+    {k:'tshirt',  l:'T恤/上衣',  i:'👕', d:3*365,  icons:['👕','👚','👗']},
+    {k:'pants',   l:'裤子',      i:'👖', d:5*365,  icons:['👖']},
+    {k:'coat',    l:'外套/大衣', i:'🧥', d:8*365,  icons:['🧥','🥼']},
+    {k:'shoes',   l:'鞋子',      i:'👟', d:4*365,  icons:['👟','👠','👞','🥾']},
+    {k:'lbag',    l:'奢侈品包',  i:'👜', d:15*365, icons:['👜','👝','🎒']},
+    {k:'lwatch',  l:'名表',      i:'⌚', d:20*365, icons:['⌚','🕰️']},
+    {k:'jewel',   l:'珠宝首饰',  i:'💍', d:10*365, icons:['💍','📿','💎']},
+    {k:'suit',    l:'正装/礼服', i:'👔', d:10*365, icons:['👔','🤵','👗']},
+    {k:'fash_o',  l:'其他',      i:'🧣', d:5*365,  icons:['🧣','🧤','🧢','🪡']},
   ],
-  car:[
-    {k:'sedan',l:'轿车/SUV',i:'🚗',d:15*365,icons:['🚗','🚙']},
-    {k:'ev',l:'新能源车',i:'⚡',d:12*365,icons:['⚡','🔋']},
-    {k:'moto',l:'摩托车',i:'🏍️',d:10*365,icons:['🏍️']},
-    {k:'ebike',l:'电动车',i:'🛵',d:5*365,icons:['🛵']},
-    {k:'bike',l:'自行车',i:'🚲',d:8*365,icons:['🚲']},
-    {k:'car_o',l:'其他',i:'🚐',d:10*365,icons:['🚐','🚕','🛻']},
+  car: [
+    {k:'sedan',  l:'轿车/SUV',  i:'🚗', d:15*365, icons:['🚗','🚙']},
+    {k:'ev',     l:'新能源车',  i:'⚡', d:12*365, icons:['⚡','🔋']},
+    {k:'moto',   l:'摩托车',    i:'🏍️', d:10*365, icons:['🏍️']},
+    {k:'ebike',  l:'电动车',    i:'🛵', d:5*365,  icons:['🛵']},
+    {k:'bike',   l:'自行车',    i:'🚲', d:8*365,  icons:['🚲']},
+    {k:'car_o',  l:'其他',      i:'🚐', d:10*365, icons:['🚐','🚕','🛻']},
   ],
-  home:[
-    {k:'house',l:'自有住宅',i:'🏠',d:70*365,icons:['🏠','🏡'],note:'按中国70年土地使用权'},
-    {k:'reno',l:'装修翻新',i:'🛋️',d:15*365,icons:['🛋️','🪑','🛁'],note:'装修平均使用寿命'},
-    {k:'rent',l:'租房押金',i:'🔑',d:365,icons:['🔑'],note:'按1年租期计算'},
-    {k:'furniture',l:'家具家电',i:'🪴',d:10*365,icons:['🪴','🛏️','📐']},
-    {k:'home_o',l:'其他',i:'🏗️',d:20*365,icons:['🏗️']},
+  home: [
+    {k:'house',     l:'自有住宅', i:'🏠', d:70*365, icons:['🏠','🏡'], note:'按中国70年土地使用权'},
+    {k:'reno',      l:'装修翻新', i:'🛋️', d:15*365, icons:['🛋️','🪑','🛁'], note:'装修平均使用寿命'},
+    {k:'rent',      l:'租房押金', i:'🔑', d:365,    icons:['🔑'], note:'按1年租期计算'},
+    {k:'furniture', l:'家具家电', i:'🪴', d:10*365, icons:['🪴','🛏️','📐']},
+    {k:'home_o',    l:'其他',     i:'🏗️', d:20*365, icons:['🏗️']},
   ],
 };
-const SL={active:'服役中',retired:'已退役',sold:'已卖出'};
-const STORAGE_KEY='asset_tracker_v1';
+const SL = {active:'服役中', retired:'已退役', sold:'已卖出'};
+const STORAGE_KEY = 'asset_tracker_v2';
 
-// --- State ---
-let items=[];
-let nid=100;
-let curCat='all',curF='all',sortBy='daily_desc';
-let addCat='elec',addSub='phone',addIcon='📱',addSt='active';
-let editId=null;
+let items = [], nid = 100;
+let curCat = 'all', curF = 'all', sortBy = 'daily_desc';
+let addCat = 'elec', addSub = 'phone', addIcon = '📱', addSt = 'active';
+let editId = null;
 
-// --- Persistence ---
-function save(){
-  try{localStorage.setItem(STORAGE_KEY,JSON.stringify({items,nid}));}catch(e){}
+// ── Core calculations ──────────────────────────────────────────────────────
+// Days elapsed since purchaseDate (live, always current)
+function calcDays(item) {
+  if (!item.purchaseDate) return item.days || 0;
+  return Math.max(0, Math.floor((Date.now() - new Date(item.purchaseDate).getTime()) / 86400000));
 }
-function load(){
-  try{
-    const raw=localStorage.getItem(STORAGE_KEY);
-    if(raw){const d=JSON.parse(raw);items=d.items||[];nid=d.nid||100;return;}
-  }catch(e){}
+
+// Linear depreciation: value falls proportionally each day, floors at 0
+function calcCurrentValue(item) {
+  const life = getLife(item.cat, item.sub);
+  const days = calcDays(item);
+  const rem  = Math.max(0, life - days);
+  return item.price * (rem / life);
+}
+
+// Progress bar colour: green → amber → red as asset ages
+function barColor(pct) {
+  if (pct < 50) return '#16a34a';
+  if (pct < 80) return '#d97706';
+  return '#dc2626';
+}
+
+function todayStr() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function fmtY(v) {
+  return '¥' + Math.round(v).toLocaleString('zh-CN');
+}
+
+// ── Persistence ────────────────────────────────────────────────────────────
+function save() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({items, nid})); } catch(e) {}
+}
+function load() {
+  try {
+    // Try current storage key first
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) { const d = JSON.parse(raw); items = d.items || []; nid = d.nid || 100; return; }
+    // Migrate from old version (days → purchaseDate)
+    const old = localStorage.getItem('asset_tracker_v1');
+    if (old) {
+      const d = JSON.parse(old);
+      items = (d.items || []).map(item => {
+        const pd = new Date(Date.now() - ((item.days || 0) * 86400000)).toISOString().slice(0, 10);
+        return {...item, purchaseDate: pd, days: undefined};
+      });
+      nid = d.nid || 100;
+      save();
+      return;
+    }
+  } catch(e) {}
   // Default sample data
-  items=[
-    {id:1,name:'iPhone 16 Pro Max 512G',price:9999,days:267,cat:'elec',sub:'phone',icon:'📱',status:'active'},
-    {id:2,name:'iPad Air',price:2999,days:1125,cat:'elec',sub:'tablet',icon:'📟',status:'active'},
-    {id:3,name:'富士 X-T50 复古微单',price:8500,days:90,cat:'elec',sub:'camera',icon:'📷',status:'active'},
-    {id:4,name:'Mini Cooper',price:238000,days:540,cat:'car',sub:'sedan',icon:'🚗',status:'active'},
-    {id:5,name:'北京朝阳公寓',price:3800000,days:1200,cat:'home',sub:'house',icon:'🏠',status:'active'},
-    {id:6,name:'Moncler 羽绒服',price:8800,days:730,cat:'fashion',sub:'coat',icon:'🧥',status:'active'},
+  items = [
+    {id:1, name:'Coco Crush',       price:100000, purchaseDate:'2024-07-23', cat:'fashion', sub:'jewel',     icon:'💍', status:'active'},
+    {id:2, name:'Clair',            price:307400, purchaseDate:'2017-12-12', cat:'car',     sub:'sedan',     icon:'🚗', status:'active'},
+    {id:3, name:'Samsung Galaxy 7', price:5200,   purchaseDate:'2026-04-14', cat:'elec',    sub:'phone',     icon:'📱', status:'active'},
+    {id:4, name:'Chanel mini flap', price:40280,  purchaseDate:'2023-10-02', cat:'fashion', sub:'lbag',      icon:'👜', status:'active'},
+    {id:5, name:'Chanel 腕表',      price:45150,  purchaseDate:'2023-01-22', cat:'fashion', sub:'lwatch',    icon:'⌚', status:'active'},
+    {id:6, name:'富士 X100iv',      price:13520,  purchaseDate:'2025-05-19', cat:'elec',    sub:'camera',    icon:'📷', status:'active'},
+    {id:7, name:'Macbook Air',      price:7800,   purchaseDate:'2024-06-02', cat:'elec',    sub:'laptop',    icon:'💻', status:'active'},
+    {id:8, name:'iPhone 12 mini',   price:6360,   purchaseDate:'2021-03-23', cat:'elec',    sub:'phone',     icon:'📱', status:'active'},
   ];
-  nid=200;
+  nid = 200;
 }
 
-// --- Helpers ---
-function getSub(c,s){return(SUBS[c]||[]).find(x=>x.k===s)||null}
-function getLife(c,s){const x=getSub(c,s);return x?x.d:365*5}
+// ── Helpers ────────────────────────────────────────────────────────────────
+function getSub(c, s) { return (SUBS[c] || []).find(x => x.k === s) || null; }
+function getLife(c, s) { const x = getSub(c, s); return x ? x.d : 365 * 5; }
 
-// --- List screen ---
-function setCat(c,el){
-  curCat=c;
-  document.querySelectorAll('.ct').forEach(t=>t.classList.remove('on'));
+// ── List screen ────────────────────────────────────────────────────────────
+function setCat(c, el) {
+  curCat = c;
+  document.querySelectorAll('.ct').forEach(t => t.classList.remove('on'));
   el.classList.add('on');
   render();
 }
-function setF(f,el){
-  curF=f;
-  document.querySelectorAll('.fp').forEach(p=>p.classList.remove('on'));
+function setF(f, el) {
+  curF = f;
+  document.querySelectorAll('.fp').forEach(p => p.classList.remove('on'));
   el.classList.add('on');
   render();
 }
-function toggleSort(){
-  sortBy=sortBy==='daily_desc'?'daily_asc':sortBy==='daily_asc'?'price_desc':'daily_desc';
-  document.getElementById('sort-lbl').textContent={daily_desc:'日均↓',daily_asc:'日均↑',price_desc:'价格↓'}[sortBy];
+function toggleSort() {
+  sortBy = sortBy === 'daily_desc' ? 'daily_asc' : sortBy === 'daily_asc' ? 'price_desc' : 'daily_desc';
+  document.getElementById('sort-lbl').textContent = {daily_desc:'日均↓', daily_asc:'日均↑', price_desc:'价格↓'}[sortBy];
   render();
 }
 
-function render(){
-  let list=items.filter(i=>(curCat==='all'||i.cat===curCat)&&(curF==='all'||i.status===curF));
-  list.sort((a,b)=>{
-    const da=a.price/Math.max(a.days,1),db=b.price/Math.max(b.days,1);
-    if(sortBy==='daily_desc')return db-da;
-    if(sortBy==='daily_asc')return da-db;
-    return b.price-a.price;
+function render() {
+  let list = items.filter(i => (curCat === 'all' || i.cat === curCat) && (curF === 'all' || i.status === curF));
+  list.sort((a, b) => {
+    const da = a.price / Math.max(calcDays(a), 1), db = b.price / Math.max(calcDays(b), 1);
+    if (sortBy === 'daily_desc') return db - da;
+    if (sortBy === 'daily_asc')  return da - db;
+    return b.price - a.price;
   });
-  const active=items.filter(i=>i.status==='active');
-  document.getElementById('kv1').textContent='¥'+items.reduce((s,i)=>s+i.price,0).toLocaleString('zh-CN',{maximumFractionDigits:0});
-  document.getElementById('kv2').textContent='¥'+active.reduce((s,i)=>s+(i.price/Math.max(i.days,1)),0).toFixed(2);
-  document.getElementById('sprow').innerHTML=
+
+  const totalOrig = items.reduce((s, i) => s + i.price, 0);
+  const totalCurr = items.reduce((s, i) => s + calcCurrentValue(i), 0);
+  const active    = items.filter(i => i.status === 'active');
+
+  document.getElementById('kv1').textContent     = fmtY(totalCurr);
+  document.getElementById('kv1-orig').textContent = '原价 ' + fmtY(totalOrig);
+  document.getElementById('kv2').textContent =
+    '¥' + active.reduce((s, i) => s + (i.price / Math.max(calcDays(i), 1)), 0).toFixed(2);
+  document.getElementById('sprow').innerHTML =
     `<div class="sp"><div class="dot" style="background:#16a34a"></div>服役中 ${items.filter(i=>i.status==='active').length}</div>
      <div class="sp"><div class="dot" style="background:#d97706"></div>已退役 ${items.filter(i=>i.status==='retired').length}</div>
      <div class="sp"><div class="dot" style="background:#ccc"></div>已卖出 ${items.filter(i=>i.status==='sold').length}</div>`;
-  const g=document.getElementById('grid');
-  if(!list.length){
-    g.innerHTML='<div class="empty"><span class="empty-icon">📭</span>暂无资产<br>点击右下角 + 添加</div>';
+
+  const g = document.getElementById('grid');
+  if (!list.length) {
+    g.innerHTML = '<div class="empty"><span class="empty-icon">📭</span>暂无资产<br>点击右下角 + 添加</div>';
     return;
   }
-  g.innerHTML=list.map(item=>{
-    const life=getLife(item.cat,item.sub);
-    const daily=item.price/Math.max(item.days,1);
-    const pct=Math.min(Math.round(item.days/life*100),100);
-    const rem=Math.max(life-item.days,0);
-    const done=item.days>=life;
-    const st=item.status||'active';
+  g.innerHTML = list.map(item => {
+    const days   = calcDays(item);
+    const life   = getLife(item.cat, item.sub);
+    const daily  = item.price / Math.max(days, 1);
+    const pct    = Math.min(Math.round(days / life * 100), 100);
+    const rem    = Math.max(life - days, 0);
+    const done   = days >= life;
+    const curVal = calcCurrentValue(item);
+    const st     = item.status || 'active';
+    const color  = done ? '#dc2626' : barColor(pct);
+    const dateLabel = item.purchaseDate ? item.purchaseDate.replace(/-/g, '/') : '';
     return `<div class="card" onclick="goEdit(${item.id})">
       <span class="sb ${st}"><span class="sdot"></span>${SL[st]}</span>
       <span class="ci">${item.icon}</span>
       <div class="cn">${item.name}</div>
-      <div class="cm">¥${item.price.toLocaleString()}　${item.days}天</div>
-      <div class="cd">¥${daily.toFixed(2)}<span>/天</span></div>
-      <div class="pb"><div class="pf" style="width:${pct}%"><div class="pk"></div></div></div>
-      <div class="pl ${done?'done':''}">${done?'✓ 已达目标':'还剩 '+rem+' 天'}</div>
+      <div class="cm">${dateLabel}　${days}天</div>
+      <div class="cv">${fmtY(curVal)}</div>
+      <div class="cv-orig">原价 ${fmtY(item.price)} · 日均 ¥${daily.toFixed(2)}</div>
+      <div class="pb"><div class="pf" style="width:${pct}%;background:${color}"><div class="pk" style="background:${color}"></div></div></div>
+      <div class="pl ${done?'done':''}">${done ? '✓ 已归零' : '还剩 ' + rem + ' 天'}</div>
     </div>`;
   }).join('');
 }
 
-// --- Navigation ---
-function goList(){
+// ── Navigation ─────────────────────────────────────────────────────────────
+function goList() {
   document.getElementById('s-add').classList.remove('on');
   document.getElementById('s-list').classList.add('on');
-  editId=null;
+  editId = null;
 }
-function goAdd(){
-  editId=null;
-  document.getElementById('form-title').textContent='录入新资产';
-  document.getElementById('addbtn').textContent='确认添加';
-  document.getElementById('del-btn').style.display='none';
+function goAdd() {
+  editId = null;
+  document.getElementById('form-title').textContent = '录入新资产';
+  document.getElementById('addbtn').textContent     = '确认添加';
+  document.getElementById('del-btn').style.display  = 'none';
   resetForm();
   document.getElementById('s-list').classList.remove('on');
   document.getElementById('s-add').classList.add('on');
 }
-function goEdit(id){
-  const item=items.find(i=>i.id===id);
-  if(!item)return;
-  editId=id;
-  document.getElementById('form-title').textContent='编辑资产';
-  document.getElementById('addbtn').textContent='保存修改';
-  document.getElementById('del-btn').style.display='block';
-  // populate form
-  addCat=item.cat;addSub=item.sub;addIcon=item.icon;addSt=item.status;
+function goEdit(id) {
+  const item = items.find(i => i.id === id);
+  if (!item) return;
+  editId = id;
+  document.getElementById('form-title').textContent = '编辑资产';
+  document.getElementById('addbtn').textContent     = '保存修改';
+  document.getElementById('del-btn').style.display  = 'block';
+  addCat = item.cat; addSub = item.sub; addIcon = item.icon; addSt = item.status;
   renderCat4();
-  document.getElementById('fn').value=item.name;
-  document.getElementById('fp2').value=item.price;
-  document.getElementById('fd').value=item.days;
-  document.querySelectorAll('.sto').forEach(e=>{
-    const s=e.getAttribute('onclick').match(/'(\w+)'/)[1];
-    e.classList.toggle('on',s===item.status);
+  document.getElementById('fn').value    = item.name;
+  document.getElementById('fp2').value   = item.price;
+  document.getElementById('fdate').value = item.purchaseDate || todayStr();
+  document.querySelectorAll('.sto').forEach(e => {
+    const s = e.getAttribute('onclick').match(/'(\w+)'/)[1];
+    e.classList.toggle('on', s === item.status);
   });
   upHint();
   document.getElementById('s-list').classList.remove('on');
   document.getElementById('s-add').classList.add('on');
 }
 
-// --- Form ---
-function resetForm(){
-  addCat='elec';addSub=SUBS.elec[0].k;addIcon=SUBS.elec[0].i;addSt='active';
-  document.getElementById('fn').value='';
-  document.getElementById('fp2').value='';
-  document.getElementById('fd').value='';
-  document.querySelectorAll('.sto').forEach((e,i)=>e.classList.toggle('on',i===0));
+// ── Form ───────────────────────────────────────────────────────────────────
+function resetForm() {
+  addCat = 'elec'; addSub = SUBS.elec[0].k; addIcon = SUBS.elec[0].i; addSt = 'active';
+  document.getElementById('fn').value    = '';
+  document.getElementById('fp2').value   = '';
+  document.getElementById('fdate').value = todayStr();
+  document.querySelectorAll('.sto').forEach((e, i) => e.classList.toggle('on', i === 0));
   renderCat4();
   upHint();
 }
-function renderCat4(){
-  document.getElementById('cat4').innerHTML=CATS.map(c=>
-    `<div class="c4o ${c.k===addCat?'on':''}" onclick="selCat('${c.k}')"><span class="ci4">${c.icon}</span>${c.label}</div>`
+function renderCat4() {
+  document.getElementById('cat4').innerHTML = CATS.map(c =>
+    `<div class="c4o ${c.k === addCat ? 'on' : ''}" onclick="selCat('${c.k}')"><span class="ci4">${c.icon}</span>${c.label}</div>`
   ).join('');
-  if(!editId){addSub=SUBS[addCat][0].k;addIcon=SUBS[addCat][0].i;}
+  if (!editId) { addSub = SUBS[addCat][0].k; addIcon = SUBS[addCat][0].i; }
   renderSubs();
 }
-function selCat(c){addCat=c;addSub=SUBS[c][0].k;addIcon=SUBS[c][0].i;renderCat4();upHint();}
-function renderSubs(){
-  document.getElementById('subg').innerHTML=(SUBS[addCat]||[]).map(s=>
-    `<div class="subo ${s.k===addSub?'on':''}" onclick="selSub('${s.k}')"><span>${s.i}</span>${s.l}</div>`
+function selCat(c) { addCat = c; addSub = SUBS[c][0].k; addIcon = SUBS[c][0].i; renderCat4(); upHint(); }
+function renderSubs() {
+  document.getElementById('subg').innerHTML = (SUBS[addCat] || []).map(s =>
+    `<div class="subo ${s.k === addSub ? 'on' : ''}" onclick="selSub('${s.k}')"><span>${s.i}</span>${s.l}</div>`
   ).join('');
   renderIcons();
 }
-function selSub(k){addSub=k;const p=getSub(addCat,k);if(p&&!editId)addIcon=p.i;renderSubs();upHint();}
-function renderIcons(){
-  const p=getSub(addCat,addSub);
-  document.getElementById('ig').innerHTML=(p?p.icons:['❓']).map(ic=>
-    `<div class="io ${ic===addIcon?'on':''}" onclick="selIcon('${ic}')">${ic}</div>`
+function selSub(k) { addSub = k; const p = getSub(addCat, k); if (p && !editId) addIcon = p.i; renderSubs(); upHint(); }
+function renderIcons() {
+  const p = getSub(addCat, addSub);
+  document.getElementById('ig').innerHTML = (p ? p.icons : ['❓']).map(ic =>
+    `<div class="io ${ic === addIcon ? 'on' : ''}" onclick="selIcon('${ic}')">${ic}</div>`
   ).join('');
 }
-function selIcon(ic){addIcon=ic;renderIcons();}
-function setSt(s,el){addSt=s;document.querySelectorAll('.sto').forEach(e=>e.classList.remove('on'));el.classList.add('on');}
-function upHint(){
-  const price=parseFloat(document.getElementById('fp2').value);
-  const days=parseInt(document.getElementById('fd').value)||0;
-  const p=getSub(addCat,addSub);
-  const h=document.getElementById('hint');
-  if(!p){h.style.display='none';return;}
-  const yrs=(p.d/365).toFixed(0);
-  const note=p.note?`<br><span style="opacity:.7">${p.note}</span>`:'';
-  let body=`<b>预设寿命：${yrs} 年（${p.d.toLocaleString()} 天）</b>${note}`;
-  if(price&&days>0){
-    const daily=(price/days).toFixed(2);
-    const pct=Math.min(Math.round(days/p.d*100),100);
-    body+=`<br>当前日均：¥${daily}/天　· 已用 ${pct}% 寿命`;
+function selIcon(ic) { addIcon = ic; renderIcons(); }
+function setSt(s, el) { addSt = s; document.querySelectorAll('.sto').forEach(e => e.classList.remove('on')); el.classList.add('on'); }
+
+function upHint() {
+  const price   = parseFloat(document.getElementById('fp2').value);
+  const dateVal = document.getElementById('fdate').value;
+  const p = getSub(addCat, addSub);
+  const h = document.getElementById('hint');
+  if (!p) { h.style.display = 'none'; return; }
+  const yrs  = (p.d / 365).toFixed(0);
+  const note = p.note ? `<br><span style="opacity:.7">${p.note}</span>` : '';
+  let body   = `<b>预设寿命：${yrs} 年（${p.d.toLocaleString()} 天）</b>${note}`;
+  if (price && dateVal) {
+    const days = Math.max(0, Math.floor((Date.now() - new Date(dateVal).getTime()) / 86400000));
+    if (days > 0) {
+      const daily  = (price / days).toFixed(2);
+      const pct    = Math.min(Math.round(days / p.d * 100), 100);
+      const rem    = Math.max(0, p.d - days);
+      const curVal = Math.round(price * (rem / p.d));
+      body += `<br>已使用 ${days} 天 · 当前估值：¥${curVal.toLocaleString()} · 已消耗 ${pct}%`;
+    }
   }
-  h.style.display='block';
-  h.innerHTML=body;
+  h.style.display = 'block';
+  h.innerHTML = body;
 }
 
-// --- Save / Delete ---
-function doSave(){
-  const name=document.getElementById('fn').value.trim();
-  const price=parseFloat(document.getElementById('fp2').value);
-  const days=parseInt(document.getElementById('fd').value)||0;
-  if(!name||!price){alert('请填写名称和价格');return;}
-  if(editId!==null){
-    const idx=items.findIndex(i=>i.id===editId);
-    if(idx>-1)items[idx]={...items[idx],name,price,days,cat:addCat,sub:addSub,icon:addIcon,status:addSt};
+// ── Save / Delete ──────────────────────────────────────────────────────────
+function doSave() {
+  const name         = document.getElementById('fn').value.trim();
+  const price        = parseFloat(document.getElementById('fp2').value);
+  const purchaseDate = document.getElementById('fdate').value;
+  if (!name || !price)    { alert('请填写名称和价格'); return; }
+  if (!purchaseDate)      { alert('请填写购入日期');   return; }
+  if (editId !== null) {
+    const idx = items.findIndex(i => i.id === editId);
+    if (idx > -1) items[idx] = {...items[idx], name, price, purchaseDate, cat:addCat, sub:addSub, icon:addIcon, status:addSt};
   } else {
-    items.unshift({id:nid++,name,price,days,cat:addCat,sub:addSub,icon:addIcon,status:addSt});
+    items.unshift({id: nid++, name, price, purchaseDate, cat:addCat, sub:addSub, icon:addIcon, status:addSt});
   }
-  save();
-  goList();
-  render();
+  save(); goList(); render();
 }
-function doDelete(){
-  if(!editId)return;
-  const item=items.find(i=>i.id===editId);
-  if(!item)return;
-  if(!confirm(`确定删除「${item.name}」？`))return;
-  items=items.filter(i=>i.id!==editId);
-  save();
-  goList();
-  render();
+function doDelete() {
+  if (!editId) return;
+  const item = items.find(i => i.id === editId);
+  if (!item) return;
+  if (!confirm(`确定删除「${item.name}」？`)) return;
+  items = items.filter(i => i.id !== editId);
+  save(); goList(); render();
 }
 
-// --- Init ---
+// ── Init ───────────────────────────────────────────────────────────────────
 load();
-document.getElementById('hdate').textContent=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'long',day:'numeric'});
+document.getElementById('hdate').textContent = new Date().toLocaleDateString('zh-CN', {year:'numeric', month:'long', day:'numeric'});
 render();
 </script>
 </body>
